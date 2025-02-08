@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:prime_alert/core/di/di_setup.dart';
 
-void main() {
-  runApp(const MainApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await setupLocator();
+  runApp(MyApp());
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
-
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      title: 'Prime Alert',
       home: Scaffold(
+        appBar: AppBar(
+          title: Text('Prime Alert'),
+        ),
         body: Center(
-          child: Text('Hello World!'),
+          child: Text('Hello World'),
         ),
       ),
     );
