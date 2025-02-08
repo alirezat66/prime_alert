@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
@@ -16,6 +18,7 @@ void main() {
   late MockPollingService mockPollingService;
   late MockPrimeStorageRepository mockStorageRepository;
   late PrimeNumberCubit cubit;
+  final pollingController = StreamController<void>.broadcast();
 
   setUp(() {
     mockRandomRepository = MockRandomRepository();
@@ -76,6 +79,42 @@ void main() {
     },
     expect: () => [
       isA<PrimeNumberInitial>(),
+    ],
+  );
+
+  blocTest<PrimeNumberCubit, PrimeNumberState>(
+    'should update PrimeNumberFound state when a new prime number is fetched',
+    build: () {
+      when(mockPollingService.pollingStream)
+          .thenAnswer((_) => pollingController.stream);
+
+      final firstPrime = TimedNumber(number: 7, responseDate: DateTime.now());
+      when(mockRandomRepository.getRandomNumber())
+          .thenAnswer((_) async => firstPrime);
+      when(mockStorageRepository.savePrimeData(any)).thenAnswer((_) async {});
+
+      return cubit;
+    },
+    act: (cubit) async {
+      cubit.startPolling();
+
+      pollingController.add(null);
+      await Future.delayed(
+          const Duration(milliseconds: 100)); // Wait for state change
+
+      final secondPrime = TimedNumber(number: 11, responseDate: DateTime.now());
+      when(mockRandomRepository.getRandomNumber())
+          .thenAnswer((_) async => secondPrime);
+
+      pollingController.add(null);
+      await Future.delayed(
+          const Duration(milliseconds: 100)); // Wait for state change
+    },
+    expect: () => [
+      isA<PrimeNumberFound>()
+          .having((state) => state.primeData.number, 'prime number', 7),
+      isA<PrimeNumberFound>().having((state) => state.primeData.number,
+          'prime number', 11), // ✅ Ensure new prime replaces old one
     ],
   );
 }
