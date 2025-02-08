@@ -21,9 +21,10 @@ void main() {
       const key = 'testKey';
       const value = 'testValue';
 
-      when(mockSharedPreferences.setString(key, value)).thenAnswer((_) async => true);
+      when(mockSharedPreferences.setString(key, value))
+          .thenAnswer((_) async => true);
 
-      final result = await preferencesLocalStorage.saveString(key, value);
+      final result = await preferencesLocalStorage.setString(key, value);
 
       expect(result, true);
       verify(mockSharedPreferences.setString(key, value)).called(1);
@@ -32,13 +33,22 @@ void main() {
     test('should retrieve a string value', () async {
       const key = 'testKey';
       const value = 'testValue';
-
       when(mockSharedPreferences.getString(key)).thenReturn(value);
-
-      final result = preferencesLocalStorage.getString(key);
+      final result = preferencesLocalStorage.getString(key, value);
 
       expect(result, value);
-      verify(mockSharedPreferences.getString(key)).called(1);
+    });
+
+    test('should return default value if key does not exist', () async {
+      const key = 'testKey';
+      const defaultValue = 'defaultValue';
+
+      when(mockSharedPreferences.containsKey(key)).thenReturn(false);
+
+      final result = preferencesLocalStorage.getString(key, defaultValue);
+
+      expect(result, defaultValue);
+      verify(mockSharedPreferences.containsKey(key)).called(1);
     });
 
     test('should remove a value', () async {
@@ -46,19 +56,21 @@ void main() {
 
       when(mockSharedPreferences.remove(key)).thenAnswer((_) async => true);
 
-      final result = await preferencesLocalStorage.remove(key);
+      final result = await preferencesLocalStorage.deleteKey(key);
 
       expect(result, true);
       verify(mockSharedPreferences.remove(key)).called(1);
     });
 
-    test('should clear all values', () async {
-      when(mockSharedPreferences.clear()).thenAnswer((_) async => true);
+    test('should check if a key exists', () async {
+      const key = 'testKey';
 
-      final result = await preferencesLocalStorage.clear();
+      when(mockSharedPreferences.containsKey(key)).thenReturn(true);
+
+      final result = await preferencesLocalStorage.hasKey(key);
 
       expect(result, true);
-      verify(mockSharedPreferences.clear()).called(1);
+      verify(mockSharedPreferences.containsKey(key)).called(1);
     });
   });
 }

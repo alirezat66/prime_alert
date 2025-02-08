@@ -1,23 +1,32 @@
+import 'package:prime_alert/core/storage/local_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class PreferencesLocalStorage {
-  final SharedPreferences sharedPreferences;
+class PreferencesLocalStorage implements LocalStorage {
+  final SharedPreferences _sharedPreferences;
 
-  PreferencesLocalStorage(this.sharedPreferences);
-
-  Future<bool> saveString(String key, String value) {
-    return sharedPreferences.setString(key, value);
+  PreferencesLocalStorage(SharedPreferences sharedPreferences)
+      : _sharedPreferences = sharedPreferences;
+  @override
+  Future<bool> setString(String key, String value) async {
+    return await _sharedPreferences.setString(key, value);
   }
 
-  String? getString(String key) {
-    return sharedPreferences.getString(key);
+  @override
+  String getString(String key, String defaultValue) {
+    if (_sharedPreferences.containsKey(key)) {
+      return _sharedPreferences.getString(key) ?? defaultValue;
+    } else {
+      return defaultValue;
+    }
   }
 
-  Future<bool> remove(String key) {
-    return sharedPreferences.remove(key);
+  @override
+  Future<bool> deleteKey(String key) async {
+    return await _sharedPreferences.remove(key);
   }
 
-  Future<bool> clear() {
-    return sharedPreferences.clear();
+  @override
+  Future<bool> hasKey(String key) {
+    return Future.value(_sharedPreferences.containsKey(key));
   }
 }

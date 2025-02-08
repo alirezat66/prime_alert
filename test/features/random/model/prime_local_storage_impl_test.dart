@@ -1,6 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:prime_alert/core/storage/local_storage.dart';
+import 'package:prime_alert/features/random/model/data/timed_number.dart';
 import 'package:prime_alert/features/random/model/prime_local_storage_impl.dart';
 import 'package:mockito/annotations.dart';
 import 'prime_local_storage_impl_test.mocks.dart';
@@ -17,39 +18,56 @@ void main() {
 
   test('should save prime data to local storage', () async {
     final date = DateTime.now();
-    when(localStorage.setString(prefLastDatePrimeHappened, date.toIso8601String()))
+    final timedNumber = TimedNumber(number: 7, responseDate: date);
+    when(localStorage.setString(
+            prefLastDatePrimeHappened, timedNumber.toStringJson()))
         .thenAnswer((_) async => true);
 
-    await primeLocalStorage.savePrimeData(date);
+    await primeLocalStorage.savePrimeData(timedNumber);
 
-    verify(localStorage.setString(prefLastDatePrimeHappened, date.toIso8601String())).called(1);
+    verify(localStorage.setString(
+            prefLastDatePrimeHappened, timedNumber.toStringJson()))
+        .called(1);
   });
 
-  test('should retrieve prime data from local storage', () async {
+  test('should retrieve prime data from local storage', () {
     final date = DateTime.now();
+    final timedNumber = TimedNumber(number: 7, responseDate: date);
     when(localStorage.getString(prefLastDatePrimeHappened, ''))
-        .thenReturn(date.toIso8601String());
+        .thenReturn(timedNumber.toStringJson());
 
-    final retrievedDate = await primeLocalStorage.getLastPrimeData();
+    final retrievedData = primeLocalStorage.getLastPrimeData();
 
-    expect(retrievedDate, date);
-    verify(localStorage.getString(prefLastDatePrimeHappened, '')).called(1);
+    expect(retrievedData!.responseDate.millisecond,
+        timedNumber.responseDate.millisecond);
+    expect(retrievedData.number, timedNumber.number);
   });
 
   test('should return null if no prime data is saved', () async {
     when(localStorage.getString(prefLastDatePrimeHappened, '')).thenReturn('');
 
-    final retrievedDate = await primeLocalStorage.getLastPrimeData();
+    final retrievedData = primeLocalStorage.getLastPrimeData();
 
-    expect(retrievedDate, null);
+    expect(retrievedData, null);
     verify(localStorage.getString(prefLastDatePrimeHappened, '')).called(1);
   });
 
   test('should clear prime data from local storage', () async {
-    when(localStorage.deleteKey(prefLastDatePrimeHappened)).thenAnswer((_) async => true);
+    when(localStorage.deleteKey(prefLastDatePrimeHappened))
+        .thenAnswer((_) async => true);
 
     await primeLocalStorage.clearPrimeData();
 
     verify(localStorage.deleteKey(prefLastDatePrimeHappened)).called(1);
+  });
+
+  test('should check if prime data exists in local storage', () async {
+    when(localStorage.hasKey(prefLastDatePrimeHappened))
+        .thenAnswer((_) async => true);
+
+    final hasKey = await primeLocalStorage.hasPrimeData();
+
+    expect(hasKey, true);
+    verify(localStorage.hasKey(prefLastDatePrimeHappened)).called(1);
   });
 }

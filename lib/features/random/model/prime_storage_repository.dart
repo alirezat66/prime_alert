@@ -1,5 +1,7 @@
+import 'package:prime_alert/features/random/model/data/timed_number.dart';
+
 abstract class PrimeStorageRepository {
-  Future<DateTime?> getLastPrimeData();
-  Future<void> savePrimeData(DateTime date);
+  TimedNumber? getLastPrimeData();
+  Future<void> savePrimeData(TimedNumber timedNumber);
   Future<void> clearPrimeData();
 }

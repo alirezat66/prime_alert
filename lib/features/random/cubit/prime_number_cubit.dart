@@ -1,23 +1,30 @@
 import 'dart:async';
 
-import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:prime_alert/core/extension/int_ext.dart';
 import 'package:prime_alert/features/random/model/polling_service.dart';
+import 'package:prime_alert/features/random/model/prime_storage_repository.dart';
 import 'package:prime_alert/features/random/model/random_repository.dart';
+import 'package:prime_alert/features/random/model/data/timed_number.dart';
 
 part 'prime_number_state.dart';
 
 class PrimeNumberCubit extends Cubit<PrimeNumberState> {
   final RandomRepository _repository;
   final PollingService _pollingService;
+  final PrimeStorageRepository _storageRepository;
   StreamSubscription<void>? _subscription;
   PrimeNumberCubit({
-    required RandomRepository repository,
+    required RandomRepository randomRepository,
     required PollingService pollingService,
-  })  : _repository = repository,
+    required PrimeStorageRepository storageRepository,
+  })  : _repository = randomRepository,
         _pollingService = pollingService,
-        super(const PrimeNumberState());
+        _storageRepository = storageRepository,
+        super(storageRepository.getLastPrimeData() != null
+            ? PrimeNumberFound(primeData: storageRepository.getLastPrimeData()!)
+            : PrimeNumberInitial());
 
   void startPolling() {
     _subscription?.cancel();
@@ -29,12 +36,17 @@ class PrimeNumberCubit extends Cubit<PrimeNumberState> {
 
   Future<void> _checkNumber() async {
     try {
-      final number = await _repository.getRandomNumber();
-      if (number.isPrime) {
-        emit(state.copyWith(number: number));
+      final timedNumber = await _repository.getRandomNumber();
+      if (timedNumber.number.isPrime) {
+        emit(PrimeNumberFound(primeData: timedNumber));
+        await _storageRepository.savePrimeData(timedNumber);
+      } else {
+        emit(PrimeNumberInitial());
+        await _storageRepository.clearPrimeData();
       }
     } catch (e) {
-      emit(state.copyWith(error: e.toString()));
+      //since the document was not clear about error handling I skipped it.
+      debugPrint('Error: $e');
     }
   }
 }
