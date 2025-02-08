@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:prime_alert/core/di/di_setup.dart';
+import 'package:prime_alert/core/di/service_locator.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await setupLocator();
-  runApp(MyApp());
+  ServiceLocator.setupLocator();
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Prime Alert',
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Prime Alert'),
+          title: const Text('Prime Alert'),
         ),
-        body: Center(
+        body: const Center(
           child: Text('Hello World'),
         ),
       ),
