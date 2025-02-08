@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:prime_alert/core/di/service_locator.dart';
-import 'package:prime_alert/core/network/api_client_dart';
+import 'package:prime_alert/core/network/api_client.dart';
 import 'package:prime_alert/core/network/config/client_config.dart';
 import 'package:prime_alert/core/network/dio_client.dart';
 

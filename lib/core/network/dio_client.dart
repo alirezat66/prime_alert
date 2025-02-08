@@ -1,6 +1,6 @@
 // lib/network/dio_api_client.dart
 import 'package:dio/dio.dart';
-import 'package:prime_alert/core/network/api_client_dart';
+import 'package:prime_alert/core/network/api_client.dart';
 import 'package:prime_alert/core/network/network_response.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
