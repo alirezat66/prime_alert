@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:prime_alert/core/extension/int_ext.dart';
 import 'package:prime_alert/features/random/model/polling_service.dart';
@@ -44,9 +43,8 @@ class PrimeNumberCubit extends Cubit<PrimeNumberState> {
         emit(PrimeNumberInitial());
         await _storageRepository.clearPrimeData();
       }
-    } catch (e) {
+    } catch (_) {
       //since the document was not clear about error handling I skipped it.
-      debugPrint('Error: $e');
     }
   }
 }

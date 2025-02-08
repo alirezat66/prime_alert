@@ -37,10 +37,6 @@ class _FakeNetworkResponse_0 extends _i1.SmartFake
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockApiClient extends _i1.Mock implements _i3.ApiClient {
-  MockApiClient() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i4.Future<_i2.NetworkResponse> get(
     String? path, {
@@ -53,6 +49,15 @@ class MockApiClient extends _i1.Mock implements _i3.ApiClient {
           {#queryParameters: queryParameters},
         ),
         returnValue:
+            _i4.Future<_i2.NetworkResponse>.value(_FakeNetworkResponse_0(
+          this,
+          Invocation.method(
+            #get,
+            [path],
+            {#queryParameters: queryParameters},
+          ),
+        )),
+        returnValueForMissingStub:
             _i4.Future<_i2.NetworkResponse>.value(_FakeNetworkResponse_0(
           this,
           Invocation.method(
