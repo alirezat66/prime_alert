@@ -6,6 +6,42 @@ Prime Alert is a Flutter project designed to monitor and detect prime numbers fr
 
 This application is designed to fetch random numbers, detect prime numbers, and display elapsed time since the last detected prime. It ensures maintainability, expandability, and reusability by following **best practices in state management, dependency injection, and routing**.
 
+## Libraries Used
+
+- **dio:** For making network requests.
+- **pretty_dio_logger:** For logging network requests.
+- **get_it:** For dependency injection.
+- **mockito:** For mocking dependencies in tests.
+- **flutter_bloc:** For state management.
+- **equatable:** For value equality.
+- **go_router:** For routing.
+- **intl:** For internationalization.
+- **gap:** For spacing widgets.
+- **flutter_localizations:** For localization support.
+- **hydrated_bloc:** For state persistence.
+- **path_provider:** For accessing the file system.
+
+## Why MVVM Why These libraries
+
+We follow the **MVVM** architecture, which is recommended in the Flutter documentation. However, even if it weren’t recommended, I believe **Clean Architecture** is not ideal for small-scope projects due to its complexity.  
+
+For state management, we use **hydrated_bloc**, which is well-suited for this type of application. With **hydrated_bloc**, we don’t need separate storage to temporarily save data and reload it when reopening the app, preventing tightly coupled dependencies in such cases.  
+
+### Routing  
+We use **go_router** for navigation, as it provides seamless support for both mobile and web versions of the application.  
+
+### Testing  
+For testing, we rely on:  
+- **mockito** for mocking dependencies  
+- **bloc_test** for testing Bloc logic  
+
+### Dependency Injection  
+We use **get_it** as our dependency injection framework and service locator.  
+
+### Networking  
+For API calls, we use **dio** along with **pretty_dio_logger** for logging network requests and responses.
+
+
 ## Tech Stack
 
 - **Language:** Dart
