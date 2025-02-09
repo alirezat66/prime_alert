@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:prime_alert/core/network/api_client.dart';
@@ -11,6 +12,7 @@ import 'package:prime_alert/features/random/cubit/prime_number_cubit.dart';
 import 'package:prime_alert/features/random/model/polling_service.dart';
 import 'package:prime_alert/features/random/model/random_repository.dart';
 import 'package:prime_alert/features/random/model/random_repository_remote_impl.dart';
+import 'package:prime_alert/features/random/model/random_repository_web_fake_impl.dart';
 import 'package:prime_alert/features/random/model/timer_polling_service.dart';
 
 final locator = GetIt.instance;
@@ -22,8 +24,13 @@ class ServiceLocator {
     locator.registerLazySingleton(() => ClientConfig.logger);
     locator.registerLazySingleton<ApiClient>(
         () => DioApiClient(locator<Dio>(), locator<PrettyDioLogger>()));
-    locator.registerLazySingleton<RandomRepository>(
-        () => RandomRepositoryRemoteImpl(locator<ApiClient>()));
+    if (!kIsWeb) {
+      locator.registerLazySingleton<RandomRepository>(
+          () => RandomRepositoryWebFakeImpl());
+    } else {
+      locator.registerLazySingleton<RandomRepository>(
+          () => RandomRepositoryRemoteImpl(locator<ApiClient>()));
+    }
 
     locator.registerLazySingleton<PollingService>(() => TimerPollingService());
     locator.registerFactory<PrimeNumberCubit>(
