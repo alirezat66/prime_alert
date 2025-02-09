@@ -248,8 +248,8 @@ class ClockScreen extends StatelessWidget {
 
 You can access the release web version of the application [here](https://alirezat66.github.io/prime_alert_web/).
 
-<iframe src="https://alirezat66.github.io/prime_alert_web/" width="412" height="915"></iframe>
-
+## Demo  
+[Live Preview](https://alirezat66.github.io/prime_alert_web/)
 
 ## Conclusion
 
