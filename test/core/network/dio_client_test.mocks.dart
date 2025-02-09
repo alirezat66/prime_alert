@@ -4,6 +4,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i8;
+import 'dart:math' as _i12;
 
 import 'package:dio/dio.dart' as _i7;
 import 'package:dio/src/adapter.dart' as _i3;
@@ -13,6 +14,7 @@ import 'package:dio/src/options.dart' as _i2;
 import 'package:dio/src/response.dart' as _i6;
 import 'package:dio/src/transformer.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:mockito/src/dummies.dart' as _i11;
 import 'package:pretty_dio_logger/src/pretty_dio_logger.dart' as _i10;
 
 // ignore_for_file: type=lint
@@ -81,6 +83,26 @@ class _FakeResponse_4<T1> extends _i1.SmartFake implements _i6.Response<T1> {
 
 class _FakeDio_5 extends _i1.SmartFake implements _i7.Dio {
   _FakeDio_5(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeIterator_6<E> extends _i1.SmartFake implements Iterator<E> {
+  _FakeIterator_6(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeInterceptor_7 extends _i1.SmartFake implements _i5.Interceptor {
+  _FakeInterceptor_7(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -1233,6 +1255,893 @@ class MockPrettyDioLogger extends _i1.Mock implements _i10.PrettyDioLogger {
           [
             response,
             handler,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
+}
+
+/// A class which mocks [Interceptors].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockInterceptors extends _i1.Mock implements _i5.Interceptors {
+  @override
+  int get length => (super.noSuchMethod(
+        Invocation.getter(#length),
+        returnValue: 0,
+        returnValueForMissingStub: 0,
+      ) as int);
+
+  @override
+  set length(int? newLength) => super.noSuchMethod(
+        Invocation.setter(
+          #length,
+          newLength,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  Iterator<_i5.Interceptor> get iterator => (super.noSuchMethod(
+        Invocation.getter(#iterator),
+        returnValue: _FakeIterator_6<_i5.Interceptor>(
+          this,
+          Invocation.getter(#iterator),
+        ),
+        returnValueForMissingStub: _FakeIterator_6<_i5.Interceptor>(
+          this,
+          Invocation.getter(#iterator),
+        ),
+      ) as Iterator<_i5.Interceptor>);
+
+  @override
+  bool get isEmpty => (super.noSuchMethod(
+        Invocation.getter(#isEmpty),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
+
+  @override
+  bool get isNotEmpty => (super.noSuchMethod(
+        Invocation.getter(#isNotEmpty),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
+
+  @override
+  _i5.Interceptor get first => (super.noSuchMethod(
+        Invocation.getter(#first),
+        returnValue: _FakeInterceptor_7(
+          this,
+          Invocation.getter(#first),
+        ),
+        returnValueForMissingStub: _FakeInterceptor_7(
+          this,
+          Invocation.getter(#first),
+        ),
+      ) as _i5.Interceptor);
+
+  @override
+  set first(_i5.Interceptor? value) => super.noSuchMethod(
+        Invocation.setter(
+          #first,
+          value,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i5.Interceptor get last => (super.noSuchMethod(
+        Invocation.getter(#last),
+        returnValue: _FakeInterceptor_7(
+          this,
+          Invocation.getter(#last),
+        ),
+        returnValueForMissingStub: _FakeInterceptor_7(
+          this,
+          Invocation.getter(#last),
+        ),
+      ) as _i5.Interceptor);
+
+  @override
+  set last(_i5.Interceptor? value) => super.noSuchMethod(
+        Invocation.setter(
+          #last,
+          value,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i5.Interceptor get single => (super.noSuchMethod(
+        Invocation.getter(#single),
+        returnValue: _FakeInterceptor_7(
+          this,
+          Invocation.getter(#single),
+        ),
+        returnValueForMissingStub: _FakeInterceptor_7(
+          this,
+          Invocation.getter(#single),
+        ),
+      ) as _i5.Interceptor);
+
+  @override
+  Iterable<_i5.Interceptor> get reversed => (super.noSuchMethod(
+        Invocation.getter(#reversed),
+        returnValue: <_i5.Interceptor>[],
+        returnValueForMissingStub: <_i5.Interceptor>[],
+      ) as Iterable<_i5.Interceptor>);
+
+  @override
+  _i5.Interceptor operator [](int? index) => (super.noSuchMethod(
+        Invocation.method(
+          #[],
+          [index],
+        ),
+        returnValue: _FakeInterceptor_7(
+          this,
+          Invocation.method(
+            #[],
+            [index],
+          ),
+        ),
+        returnValueForMissingStub: _FakeInterceptor_7(
+          this,
+          Invocation.method(
+            #[],
+            [index],
+          ),
+        ),
+      ) as _i5.Interceptor);
+
+  @override
+  void operator []=(
+    int? index,
+    _i5.Interceptor? value,
+  ) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #[]=,
+          [
+            index,
+            value,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void clear({bool? keepImplyContentTypeInterceptor = true}) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #clear,
+          [],
+          {#keepImplyContentTypeInterceptor: keepImplyContentTypeInterceptor},
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void removeImplyContentTypeInterceptor() => super.noSuchMethod(
+        Invocation.method(
+          #removeImplyContentTypeInterceptor,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i5.Interceptor elementAt(int? index) => (super.noSuchMethod(
+        Invocation.method(
+          #elementAt,
+          [index],
+        ),
+        returnValue: _FakeInterceptor_7(
+          this,
+          Invocation.method(
+            #elementAt,
+            [index],
+          ),
+        ),
+        returnValueForMissingStub: _FakeInterceptor_7(
+          this,
+          Invocation.method(
+            #elementAt,
+            [index],
+          ),
+        ),
+      ) as _i5.Interceptor);
+
+  @override
+  Iterable<_i5.Interceptor> followedBy(Iterable<_i5.Interceptor>? other) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #followedBy,
+          [other],
+        ),
+        returnValue: <_i5.Interceptor>[],
+        returnValueForMissingStub: <_i5.Interceptor>[],
+      ) as Iterable<_i5.Interceptor>);
+
+  @override
+  void forEach(void Function(_i5.Interceptor)? action) => super.noSuchMethod(
+        Invocation.method(
+          #forEach,
+          [action],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  bool contains(Object? element) => (super.noSuchMethod(
+        Invocation.method(
+          #contains,
+          [element],
+        ),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
+
+  @override
+  bool every(bool Function(_i5.Interceptor)? test) => (super.noSuchMethod(
+        Invocation.method(
+          #every,
+          [test],
+        ),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
+
+  @override
+  bool any(bool Function(_i5.Interceptor)? test) => (super.noSuchMethod(
+        Invocation.method(
+          #any,
+          [test],
+        ),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
+
+  @override
+  _i5.Interceptor firstWhere(
+    bool Function(_i5.Interceptor)? test, {
+    _i5.Interceptor Function()? orElse,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #firstWhere,
+          [test],
+          {#orElse: orElse},
+        ),
+        returnValue: _FakeInterceptor_7(
+          this,
+          Invocation.method(
+            #firstWhere,
+            [test],
+            {#orElse: orElse},
+          ),
+        ),
+        returnValueForMissingStub: _FakeInterceptor_7(
+          this,
+          Invocation.method(
+            #firstWhere,
+            [test],
+            {#orElse: orElse},
+          ),
+        ),
+      ) as _i5.Interceptor);
+
+  @override
+  _i5.Interceptor lastWhere(
+    bool Function(_i5.Interceptor)? test, {
+    _i5.Interceptor Function()? orElse,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #lastWhere,
+          [test],
+          {#orElse: orElse},
+        ),
+        returnValue: _FakeInterceptor_7(
+          this,
+          Invocation.method(
+            #lastWhere,
+            [test],
+            {#orElse: orElse},
+          ),
+        ),
+        returnValueForMissingStub: _FakeInterceptor_7(
+          this,
+          Invocation.method(
+            #lastWhere,
+            [test],
+            {#orElse: orElse},
+          ),
+        ),
+      ) as _i5.Interceptor);
+
+  @override
+  _i5.Interceptor singleWhere(
+    bool Function(_i5.Interceptor)? test, {
+    _i5.Interceptor Function()? orElse,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #singleWhere,
+          [test],
+          {#orElse: orElse},
+        ),
+        returnValue: _FakeInterceptor_7(
+          this,
+          Invocation.method(
+            #singleWhere,
+            [test],
+            {#orElse: orElse},
+          ),
+        ),
+        returnValueForMissingStub: _FakeInterceptor_7(
+          this,
+          Invocation.method(
+            #singleWhere,
+            [test],
+            {#orElse: orElse},
+          ),
+        ),
+      ) as _i5.Interceptor);
+
+  @override
+  String join([String? separator = r'']) => (super.noSuchMethod(
+        Invocation.method(
+          #join,
+          [separator],
+        ),
+        returnValue: _i11.dummyValue<String>(
+          this,
+          Invocation.method(
+            #join,
+            [separator],
+          ),
+        ),
+        returnValueForMissingStub: _i11.dummyValue<String>(
+          this,
+          Invocation.method(
+            #join,
+            [separator],
+          ),
+        ),
+      ) as String);
+
+  @override
+  Iterable<_i5.Interceptor> where(bool Function(_i5.Interceptor)? test) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #where,
+          [test],
+        ),
+        returnValue: <_i5.Interceptor>[],
+        returnValueForMissingStub: <_i5.Interceptor>[],
+      ) as Iterable<_i5.Interceptor>);
+
+  @override
+  Iterable<T> whereType<T>() => (super.noSuchMethod(
+        Invocation.method(
+          #whereType,
+          [],
+        ),
+        returnValue: <T>[],
+        returnValueForMissingStub: <T>[],
+      ) as Iterable<T>);
+
+  @override
+  Iterable<T> map<T>(T Function(_i5.Interceptor)? f) => (super.noSuchMethod(
+        Invocation.method(
+          #map,
+          [f],
+        ),
+        returnValue: <T>[],
+        returnValueForMissingStub: <T>[],
+      ) as Iterable<T>);
+
+  @override
+  Iterable<T> expand<T>(Iterable<T> Function(_i5.Interceptor)? f) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #expand,
+          [f],
+        ),
+        returnValue: <T>[],
+        returnValueForMissingStub: <T>[],
+      ) as Iterable<T>);
+
+  @override
+  _i5.Interceptor reduce(
+          _i5.Interceptor Function(
+            _i5.Interceptor,
+            _i5.Interceptor,
+          )? combine) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #reduce,
+          [combine],
+        ),
+        returnValue: _FakeInterceptor_7(
+          this,
+          Invocation.method(
+            #reduce,
+            [combine],
+          ),
+        ),
+        returnValueForMissingStub: _FakeInterceptor_7(
+          this,
+          Invocation.method(
+            #reduce,
+            [combine],
+          ),
+        ),
+      ) as _i5.Interceptor);
+
+  @override
+  T fold<T>(
+    T? initialValue,
+    T Function(
+      T,
+      _i5.Interceptor,
+    )? combine,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #fold,
+          [
+            initialValue,
+            combine,
+          ],
+        ),
+        returnValue: _i11.dummyValue<T>(
+          this,
+          Invocation.method(
+            #fold,
+            [
+              initialValue,
+              combine,
+            ],
+          ),
+        ),
+        returnValueForMissingStub: _i11.dummyValue<T>(
+          this,
+          Invocation.method(
+            #fold,
+            [
+              initialValue,
+              combine,
+            ],
+          ),
+        ),
+      ) as T);
+
+  @override
+  Iterable<_i5.Interceptor> skip(int? count) => (super.noSuchMethod(
+        Invocation.method(
+          #skip,
+          [count],
+        ),
+        returnValue: <_i5.Interceptor>[],
+        returnValueForMissingStub: <_i5.Interceptor>[],
+      ) as Iterable<_i5.Interceptor>);
+
+  @override
+  Iterable<_i5.Interceptor> skipWhile(bool Function(_i5.Interceptor)? test) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #skipWhile,
+          [test],
+        ),
+        returnValue: <_i5.Interceptor>[],
+        returnValueForMissingStub: <_i5.Interceptor>[],
+      ) as Iterable<_i5.Interceptor>);
+
+  @override
+  Iterable<_i5.Interceptor> take(int? count) => (super.noSuchMethod(
+        Invocation.method(
+          #take,
+          [count],
+        ),
+        returnValue: <_i5.Interceptor>[],
+        returnValueForMissingStub: <_i5.Interceptor>[],
+      ) as Iterable<_i5.Interceptor>);
+
+  @override
+  Iterable<_i5.Interceptor> takeWhile(bool Function(_i5.Interceptor)? test) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #takeWhile,
+          [test],
+        ),
+        returnValue: <_i5.Interceptor>[],
+        returnValueForMissingStub: <_i5.Interceptor>[],
+      ) as Iterable<_i5.Interceptor>);
+
+  @override
+  List<_i5.Interceptor> toList({bool? growable = true}) => (super.noSuchMethod(
+        Invocation.method(
+          #toList,
+          [],
+          {#growable: growable},
+        ),
+        returnValue: <_i5.Interceptor>[],
+        returnValueForMissingStub: <_i5.Interceptor>[],
+      ) as List<_i5.Interceptor>);
+
+  @override
+  Set<_i5.Interceptor> toSet() => (super.noSuchMethod(
+        Invocation.method(
+          #toSet,
+          [],
+        ),
+        returnValue: <_i5.Interceptor>{},
+        returnValueForMissingStub: <_i5.Interceptor>{},
+      ) as Set<_i5.Interceptor>);
+
+  @override
+  void add(_i5.Interceptor? element) => super.noSuchMethod(
+        Invocation.method(
+          #add,
+          [element],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void addAll(Iterable<_i5.Interceptor>? iterable) => super.noSuchMethod(
+        Invocation.method(
+          #addAll,
+          [iterable],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  bool remove(Object? element) => (super.noSuchMethod(
+        Invocation.method(
+          #remove,
+          [element],
+        ),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
+
+  @override
+  void removeWhere(bool Function(_i5.Interceptor)? test) => super.noSuchMethod(
+        Invocation.method(
+          #removeWhere,
+          [test],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void retainWhere(bool Function(_i5.Interceptor)? test) => super.noSuchMethod(
+        Invocation.method(
+          #retainWhere,
+          [test],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  List<R> cast<R>() => (super.noSuchMethod(
+        Invocation.method(
+          #cast,
+          [],
+        ),
+        returnValue: <R>[],
+        returnValueForMissingStub: <R>[],
+      ) as List<R>);
+
+  @override
+  _i5.Interceptor removeLast() => (super.noSuchMethod(
+        Invocation.method(
+          #removeLast,
+          [],
+        ),
+        returnValue: _FakeInterceptor_7(
+          this,
+          Invocation.method(
+            #removeLast,
+            [],
+          ),
+        ),
+        returnValueForMissingStub: _FakeInterceptor_7(
+          this,
+          Invocation.method(
+            #removeLast,
+            [],
+          ),
+        ),
+      ) as _i5.Interceptor);
+
+  @override
+  void sort(
+          [int Function(
+            _i5.Interceptor,
+            _i5.Interceptor,
+          )? compare]) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #sort,
+          [compare],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void shuffle([_i12.Random? random]) => super.noSuchMethod(
+        Invocation.method(
+          #shuffle,
+          [random],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  Map<int, _i5.Interceptor> asMap() => (super.noSuchMethod(
+        Invocation.method(
+          #asMap,
+          [],
+        ),
+        returnValue: <int, _i5.Interceptor>{},
+        returnValueForMissingStub: <int, _i5.Interceptor>{},
+      ) as Map<int, _i5.Interceptor>);
+
+  @override
+  List<_i5.Interceptor> operator +(List<_i5.Interceptor>? other) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #+,
+          [other],
+        ),
+        returnValue: <_i5.Interceptor>[],
+        returnValueForMissingStub: <_i5.Interceptor>[],
+      ) as List<_i5.Interceptor>);
+
+  @override
+  List<_i5.Interceptor> sublist(
+    int? start, [
+    int? end,
+  ]) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #sublist,
+          [
+            start,
+            end,
+          ],
+        ),
+        returnValue: <_i5.Interceptor>[],
+        returnValueForMissingStub: <_i5.Interceptor>[],
+      ) as List<_i5.Interceptor>);
+
+  @override
+  Iterable<_i5.Interceptor> getRange(
+    int? start,
+    int? end,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getRange,
+          [
+            start,
+            end,
+          ],
+        ),
+        returnValue: <_i5.Interceptor>[],
+        returnValueForMissingStub: <_i5.Interceptor>[],
+      ) as Iterable<_i5.Interceptor>);
+
+  @override
+  void removeRange(
+    int? start,
+    int? end,
+  ) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #removeRange,
+          [
+            start,
+            end,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void fillRange(
+    int? start,
+    int? end, [
+    _i5.Interceptor? fill,
+  ]) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #fillRange,
+          [
+            start,
+            end,
+            fill,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void setRange(
+    int? start,
+    int? end,
+    Iterable<_i5.Interceptor>? iterable, [
+    int? skipCount = 0,
+  ]) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #setRange,
+          [
+            start,
+            end,
+            iterable,
+            skipCount,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void replaceRange(
+    int? start,
+    int? end,
+    Iterable<_i5.Interceptor>? newContents,
+  ) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #replaceRange,
+          [
+            start,
+            end,
+            newContents,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  int indexOf(
+    Object? element, [
+    int? start = 0,
+  ]) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #indexOf,
+          [
+            element,
+            start,
+          ],
+        ),
+        returnValue: 0,
+        returnValueForMissingStub: 0,
+      ) as int);
+
+  @override
+  int indexWhere(
+    bool Function(_i5.Interceptor)? test, [
+    int? start = 0,
+  ]) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #indexWhere,
+          [
+            test,
+            start,
+          ],
+        ),
+        returnValue: 0,
+        returnValueForMissingStub: 0,
+      ) as int);
+
+  @override
+  int lastIndexOf(
+    Object? element, [
+    int? start,
+  ]) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #lastIndexOf,
+          [
+            element,
+            start,
+          ],
+        ),
+        returnValue: 0,
+        returnValueForMissingStub: 0,
+      ) as int);
+
+  @override
+  int lastIndexWhere(
+    bool Function(_i5.Interceptor)? test, [
+    int? start,
+  ]) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #lastIndexWhere,
+          [
+            test,
+            start,
+          ],
+        ),
+        returnValue: 0,
+        returnValueForMissingStub: 0,
+      ) as int);
+
+  @override
+  void insert(
+    int? index,
+    _i5.Interceptor? element,
+  ) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #insert,
+          [
+            index,
+            element,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i5.Interceptor removeAt(int? index) => (super.noSuchMethod(
+        Invocation.method(
+          #removeAt,
+          [index],
+        ),
+        returnValue: _FakeInterceptor_7(
+          this,
+          Invocation.method(
+            #removeAt,
+            [index],
+          ),
+        ),
+        returnValueForMissingStub: _FakeInterceptor_7(
+          this,
+          Invocation.method(
+            #removeAt,
+            [index],
+          ),
+        ),
+      ) as _i5.Interceptor);
+
+  @override
+  void insertAll(
+    int? index,
+    Iterable<_i5.Interceptor>? iterable,
+  ) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #insertAll,
+          [
+            index,
+            iterable,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void setAll(
+    int? index,
+    Iterable<_i5.Interceptor>? iterable,
+  ) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #setAll,
+          [
+            index,
+            iterable,
           ],
         ),
         returnValueForMissingStub: null,
