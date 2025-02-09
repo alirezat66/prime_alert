@@ -24,7 +24,7 @@ class ServiceLocator {
     locator.registerLazySingleton(() => ClientConfig.logger);
     locator.registerLazySingleton<ApiClient>(
         () => DioApiClient(locator<Dio>(), locator<PrettyDioLogger>()));
-    if (!kIsWeb) {
+    if (kIsWeb) {
       locator.registerLazySingleton<RandomRepository>(
           () => RandomRepositoryWebFakeImpl());
     } else {
