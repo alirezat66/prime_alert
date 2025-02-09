@@ -85,68 +85,18 @@ ThemeData darkTheme = ThemeData(
     ),
   ),
   checkboxTheme: CheckboxThemeData(
-    fillColor: MaterialStateProperty.all(const Color(0xFF87EA62)),
+    fillColor: WidgetStateProperty.all(const Color(0xFF87EA62)),
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
       backgroundColor: const Color(0xFF87EA62),
+      foregroundColor: Colors.black,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
       textStyle: const TextStyle(
-          fontSize: 14, fontWeight: FontWeight.w500, color: Colors.white),
+          fontSize: 16, fontWeight: FontWeight.w500, color: Colors.black),
     ),
-  ),
-  outlinedButtonTheme: OutlinedButtonThemeData(
-    style: OutlinedButton.styleFrom(
-      foregroundColor: const Color(0xFF60CF67),
-      side: const BorderSide(color: Color(0xFF60CF67), width: 1.0),
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-    ),
-  ),
-  textButtonTheme: TextButtonThemeData(
-    style: TextButton.styleFrom(
-      foregroundColor: const Color(0xFFE1E2E8),
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-    ),
-  ),
-  listTileTheme: ListTileThemeData(
-    textColor: const Color(0xFFE1E2E8),
-    contentPadding: const EdgeInsets.all(5.0),
-    horizontalTitleGap: 5,
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(16.0),
-    ),
-  ),
-  radioTheme: RadioThemeData(
-    fillColor: WidgetStateProperty.resolveWith<Color>(
-      (states) => const Color(0xFF60CF67),
-    ),
-  ),
-  tabBarTheme: const TabBarTheme(
-    labelStyle: TextStyle(
-        fontSize: 14, fontWeight: FontWeight.w500, color: Color(0xFF60CF67)),
-    unselectedLabelStyle: TextStyle(
-        fontSize: 12, fontWeight: FontWeight.w400, color: Color(0xFFE1E2E8)),
-  ),
-  bottomSheetTheme: const BottomSheetThemeData(
-    backgroundColor: Color(0xFF1D2024),
-    modalBackgroundColor: Color(0xFF1D2024),
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(24.0), topRight: Radius.circular(24.0)),
-    ),
-  ),
-  dividerColor: const Color(0xFFC3C7CF),
-  shadowColor: Colors.black,
-  hintColor: const Color(0xFF8D9199),
-  splashColor: Colors.white30,
-  iconTheme: const IconThemeData(
-    color: Colors.white,
-  ),
-  primaryIconTheme: const IconThemeData(
-    color: Colors.white,
   ),
   visualDensity: VisualDensity.compact,
 );

@@ -1,13 +1,22 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:prime_alert/core/di/service_locator.dart';
+import 'package:prime_alert/core/routing/app_router.dart';
 import 'package:prime_alert/core/theme/dark_theme.dart';
 import 'package:prime_alert/features/clock/view/clock_screen.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  ServiceLocator.setupLocator(await SharedPreferences.getInstance());
+  HydratedBloc.storage = await HydratedStorage.build(
+    storageDirectory: kIsWeb
+        ? HydratedStorage.webStorageDirectory
+        : await getTemporaryDirectory(),
+  );
+  ServiceLocator.setupLocator();
   runApp(const MyApp());
 }
 
@@ -16,23 +25,28 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Prime Alert',
-      theme: darkTheme,
-      supportedLocales: const [
-        Locale('de', 'DE'),
-        Locale('en', 'US'), // Add fallback if needed
-      ],
-      localizationsDelegates: const [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Prime Alert'),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => primeNumberCubit,
         ),
-        body: const ClockScreen(),
+        BlocProvider(
+          create: (context) => elapsedTimeCubit,
+        ),
+      ],
+      child: MaterialApp.router(
+        title: 'Prime Alert',
+        theme: darkTheme,
+        supportedLocales: const [
+          Locale('de', 'DE'),
+          Locale('en', 'US'), // Add fallback if needed
+        ],
+        localizationsDelegates: const [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        routerConfig: AppRouter.router,
       ),
     );
   }

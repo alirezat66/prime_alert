@@ -1,28 +1,21 @@
 import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:prime_alert/features/random/model/prime_storage_repository.dart';
 
 class ElapsedTimeCubit extends Cubit<Duration?> {
-  final PrimeStorageRepository _storageRepository;
-  ElapsedTimeCubit(PrimeStorageRepository primeStorageRepository)
-      : _storageRepository = primeStorageRepository,
-        super(null);
+  ElapsedTimeCubit() : super(null);
   Timer? _timer;
 
-  void startTimer() {
+  void startTimer(DateTime lastPrimeDate) {
     _timer?.cancel();
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      final lastPrime = _storageRepository.getLastPrimeData();
-      if (lastPrime != null) {
-        emit(DateTime.now().difference(lastPrime.responseDate));
-      }
+      emit(DateTime.now().difference(lastPrimeDate));
     });
   }
 
   @override
   Future<void> close() {
-    _timer?.cancel(); // ✅ Stop the timer before closing
+    _timer?.cancel();
     return super.close();
   }
 }

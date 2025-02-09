@@ -9,6 +9,21 @@ class TimedNumber {
     required this.responseDate,
   });
 
+  factory TimedNumber.fromJson(Map<String, dynamic> json) {
+    return TimedNumber(
+      number: json['number'],
+      responseDate: DateTime.parse(json['responseDate']),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'number': number,
+      'responseDate': responseDate.toIso8601String(),
+      'type': 'found',
+    };
+  }
+
   factory TimedNumber.fromStringJson(String jsonString) {
     final Map<String, dynamic> json = jsonDecode(jsonString);
     return TimedNumber(

@@ -5,9 +5,9 @@ sealed class PrimeNumberState {}
 class PrimeNumberInitial extends PrimeNumberState {}
 
 class PrimeNumberFound extends PrimeNumberState {
-  final TimedNumber primeData;
+  final TimedNumber timedNumber;
 
   PrimeNumberFound({
-    required this.primeData,
+    required this.timedNumber,
   });
 }

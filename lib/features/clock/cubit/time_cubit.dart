@@ -15,8 +15,12 @@ class TimeCubit extends Cubit<String> {
         DateTime(now.year, now.month, now.day, now.hour, now.minute + 1);
     final timeUntilNextMinute = nextMinute.difference(now);
     Timer(timeUntilNextMinute, () {
-      updateTime();
-      _timer = Timer.periodic(const Duration(minutes: 1), (_) => updateTime());
+      if (!isClosed) {
+        updateTime();
+        _timer = Timer.periodic(const Duration(minutes: 1), (_) {
+          if (!isClosed) updateTime(); // ✅ Check before emitting
+        });
+      }
     });
   }
 
