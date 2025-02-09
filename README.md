@@ -246,9 +246,7 @@ class ClockScreen extends StatelessWidget {
 ```
 ## Release Web Version
 
-You can access the release web version of the application [here](https://alirezat66.github.io/prime_alert_web/).
-
-## Demo  
+You can access the release web version of the application 
 [Live Preview](https://alirezat66.github.io/prime_alert_web/)
 
 ## Conclusion
