@@ -16,6 +16,7 @@ class PrimeScreen extends StatelessWidget {
         builder: (context, state) {
           return SizedBox(
             width: double.infinity,
+            height: double.infinity,
             child: Column(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.center,
