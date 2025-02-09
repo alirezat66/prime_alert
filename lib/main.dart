@@ -7,7 +7,6 @@ import 'package:path_provider/path_provider.dart';
 import 'package:prime_alert/core/di/service_locator.dart';
 import 'package:prime_alert/core/routing/app_router.dart';
 import 'package:prime_alert/core/theme/dark_theme.dart';
-import 'package:prime_alert/features/clock/view/clock_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

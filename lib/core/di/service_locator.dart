@@ -32,8 +32,7 @@ class ServiceLocator {
           pollingService: locator<PollingService>()),
     );
 
-    locator.registerFactory<ElapsedTimeCubit>(
-        () => ElapsedTimeCubit());
+    locator.registerFactory<ElapsedTimeCubit>(() => ElapsedTimeCubit());
 
     locator.registerFactory<TimeCubit>(() => TimeCubit());
     locator.registerFactory<DateCubit>(

@@ -6,7 +6,8 @@ void main() {
     late TimerPollingService timerPollingService;
 
     setUp(() {
-      timerPollingService = TimerPollingService(interval: Duration(milliseconds: 100));
+      timerPollingService =
+          TimerPollingService(interval: Duration(milliseconds: 100));
     });
 
     tearDown(() {

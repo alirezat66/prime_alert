@@ -5,12 +5,11 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i4;
 
+import 'package:hydrated_bloc/src/hydrated_storage.dart' as _i6;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:prime_alert/features/random/model/data/timed_number.dart'
     as _i2;
 import 'package:prime_alert/features/random/model/polling_service.dart' as _i5;
-import 'package:prime_alert/features/random/model/prime_storage_repository.dart'
-    as _i6;
 import 'package:prime_alert/features/random/model/random_repository.dart'
     as _i3;
 
@@ -41,6 +40,10 @@ class _FakeTimedNumber_0 extends _i1.SmartFake implements _i2.TimedNumber {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockRandomRepository extends _i1.Mock implements _i3.RandomRepository {
+  MockRandomRepository() {
+    _i1.throwOnMissingStub(this);
+  }
+
   @override
   _i4.Future<_i2.TimedNumber> getRandomNumber() => (super.noSuchMethod(
         Invocation.method(
@@ -54,14 +57,6 @@ class MockRandomRepository extends _i1.Mock implements _i3.RandomRepository {
             [],
           ),
         )),
-        returnValueForMissingStub:
-            _i4.Future<_i2.TimedNumber>.value(_FakeTimedNumber_0(
-          this,
-          Invocation.method(
-            #getRandomNumber,
-            [],
-          ),
-        )),
       ) as _i4.Future<_i2.TimedNumber>);
 }
 
@@ -69,11 +64,14 @@ class MockRandomRepository extends _i1.Mock implements _i3.RandomRepository {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockPollingService extends _i1.Mock implements _i5.PollingService {
+  MockPollingService() {
+    _i1.throwOnMissingStub(this);
+  }
+
   @override
   _i4.Stream<void> get pollingStream => (super.noSuchMethod(
         Invocation.getter(#pollingStream),
         returnValue: _i4.Stream<void>.empty(),
-        returnValueForMissingStub: _i4.Stream<void>.empty(),
       ) as _i4.Stream<void>);
 
   @override
@@ -95,26 +93,61 @@ class MockPollingService extends _i1.Mock implements _i5.PollingService {
       );
 }
 
-/// A class which mocks [PrimeStorageRepository].
+/// A class which mocks [Storage].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockPrimeStorageRepository extends _i1.Mock
-    implements _i6.PrimeStorageRepository {
+class MockStorage extends _i1.Mock implements _i6.Storage {
+  MockStorage() {
+    _i1.throwOnMissingStub(this);
+  }
+
   @override
-  _i4.Future<void> savePrimeData(_i2.TimedNumber? timedNumber) =>
+  dynamic read(String? key) => super.noSuchMethod(Invocation.method(
+        #read,
+        [key],
+      ));
+
+  @override
+  _i4.Future<void> write(
+    String? key,
+    dynamic value,
+  ) =>
       (super.noSuchMethod(
         Invocation.method(
-          #savePrimeData,
-          [timedNumber],
+          #write,
+          [
+            key,
+            value,
+          ],
         ),
         returnValue: _i4.Future<void>.value(),
         returnValueForMissingStub: _i4.Future<void>.value(),
       ) as _i4.Future<void>);
 
   @override
-  _i4.Future<void> clearPrimeData() => (super.noSuchMethod(
+  _i4.Future<void> delete(String? key) => (super.noSuchMethod(
         Invocation.method(
-          #clearPrimeData,
+          #delete,
+          [key],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+
+  @override
+  _i4.Future<void> clear() => (super.noSuchMethod(
+        Invocation.method(
+          #clear,
+          [],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+
+  @override
+  _i4.Future<void> close() => (super.noSuchMethod(
+        Invocation.method(
+          #close,
           [],
         ),
         returnValue: _i4.Future<void>.value(),

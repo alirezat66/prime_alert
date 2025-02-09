@@ -1,6 +1,5 @@
 extension DurationExtension on Duration {
   String get formatted {
-    
     final days = inDays;
     final hours = inHours.remainder(24).toString().padLeft(2, '0');
     final minutes = inMinutes.remainder(60).toString().padLeft(2, '0');
