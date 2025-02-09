@@ -6,6 +6,9 @@ import 'package:prime_alert/core/network/config/client_config.dart';
 import 'package:prime_alert/core/network/dio_client.dart';
 import 'package:prime_alert/core/storage/local_storage.dart';
 import 'package:prime_alert/core/storage/preferences_local_storage.dart';
+import 'package:prime_alert/features/clock/cubit/date_cubit.dart';
+import 'package:prime_alert/features/clock/cubit/time_cubit.dart';
+import 'package:prime_alert/features/random/cubit/elapsed_time_cubit.dart';
 import 'package:prime_alert/features/random/cubit/prime_number_cubit.dart';
 import 'package:prime_alert/features/random/model/polling_service.dart';
 import 'package:prime_alert/features/random/model/prime_local_storage_impl.dart';
@@ -41,6 +44,14 @@ class ServiceLocator {
           randomRepository: locator<RandomRepository>(),
           storageRepository: locator<PrimeStorageRepository>(),
           pollingService: locator<PollingService>()),
+    );
+
+    locator.registerFactory<ElapsedTimeCubit>(
+        () => ElapsedTimeCubit(locator<PrimeStorageRepository>()));
+
+    locator.registerFactory<TimeCubit>(() => TimeCubit());
+    locator.registerFactory<DateCubit>(
+      () => DateCubit(),
     );
   }
 }
