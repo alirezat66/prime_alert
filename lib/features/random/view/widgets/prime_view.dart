@@ -1,8 +1,8 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
-import 'package:prime_alert/core/extension/context_ext.dart';
-import 'package:prime_alert/core/extension/duration_ext.dart';
+import 'package:prime_alert/core/extensions/context_ext.dart';
+import 'package:prime_alert/core/extensions/duration_ext.dart';
 import 'package:prime_alert/features/random/cubit/elapsed_time_cubit.dart';
 import 'package:prime_alert/features/random/cubit/prime_number_cubit.dart';
 

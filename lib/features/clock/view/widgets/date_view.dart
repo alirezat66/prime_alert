@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:prime_alert/core/extension/context_ext.dart';
+import 'package:prime_alert/core/extensions/context_ext.dart';
 import 'package:prime_alert/features/clock/cubit/date_cubit.dart';
 
 class DateView extends StatelessWidget {

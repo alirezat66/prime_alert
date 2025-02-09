@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:prime_alert/core/extension/int_ext.dart';
+import 'package:prime_alert/core/extensions/int_ext.dart';
 
 void main() {
   group('IntExtension', () {

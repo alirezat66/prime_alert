@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:prime_alert/core/extension/date_ext.dart';
+import 'package:prime_alert/core/extensions/date_ext.dart';
 
 class DateCubit extends Cubit<String> {
   Timer? _timer;

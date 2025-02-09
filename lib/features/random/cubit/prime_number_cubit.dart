@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:prime_alert/core/extension/int_ext.dart';
+import 'package:prime_alert/core/extensions/int_ext.dart';
 import 'package:prime_alert/features/random/model/polling_service.dart';
 import 'package:prime_alert/features/random/model/random_repository.dart';
 import 'package:prime_alert/features/random/model/data/timed_number.dart';
